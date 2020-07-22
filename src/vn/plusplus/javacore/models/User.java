@@ -1,4 +1,4 @@
 package vn.plusplus.javacore.models;
 
-public class UserEntity {
+public class User {
 }
