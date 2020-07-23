@@ -9,7 +9,7 @@ public class User {
     private String gender;
     private int age;
     //initialization
-    public User(String username, String password, String fullname, String email, String address, String gender, int age) {
+    public User(String username, String password, String fullname, String gender, int age, String address, String email) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
