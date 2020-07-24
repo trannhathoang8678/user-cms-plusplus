@@ -1,5 +1,7 @@
 package vn.plusplus.javacore.models;
 
+import java.util.Scanner;
+
 public class User {
     private String username;
     private String password;
@@ -8,6 +10,7 @@ public class User {
     private String address;
     private String gender;
     private int age;
+    Scanner sc = new Scanner(System.in);
     //initialization
     public User(String username, String password, String fullname, String gender, int age, String address, String email) {
         this.username = username;
@@ -20,6 +23,22 @@ public class User {
     }
 
     public User() {
+        System.out.println("Write properties of your account ");
+        System.out.println("Notice that there are no space in any properties of yours");
+        System.out.print("Username: ");
+        username = sc.next();
+        System.out.print("Password: ");
+        password = sc.next();
+        System.out.print("Fullname: ");
+        fullname = sc.next();
+        System.out.print("Email: ");
+        email = sc.next();
+        System.out.print("Address: ");
+        address = sc.next();
+        System.out.print("Gender: ");
+        gender = sc.next();
+        System.out.print("Age: ");
+        age = sc.nextInt();
     }
     //getters,setters
     public String getUsername() {
