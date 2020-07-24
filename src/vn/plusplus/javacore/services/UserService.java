@@ -57,7 +57,7 @@ public class UserService implements UserInterface {
         return null;
     }
     @Override
-    public boolean verifyToken(String token) {
+    public boolean verifyToken(String token, String userToken) {
         return false;
     }
 

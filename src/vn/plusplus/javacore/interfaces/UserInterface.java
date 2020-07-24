@@ -23,7 +23,7 @@ public interface UserInterface {
     boolean verifyEmail(String email);
     User findUserByEmail(String email);
     String sendTokenResetToEmail(String email);
-    boolean verifyToken(String token);
+    boolean verifyToken(String token, String userToken);
 
     //4. Display user list
     void displayUsers(List<User> users);
