@@ -22,8 +22,8 @@ public interface UserInterface {
     //3. Reset password
     boolean verifyEmail(String email);
     User findUserByEmail(String email);
-    void sendTokenResetToEmail(String email);
-    void saveTokenResetToDB(String token, String email, String username);
+    String sendTokenResetToEmail(String email);
+    boolean verifyToken(String token);
 
     //4. Display user list
     void displayUsers(List<User> users);

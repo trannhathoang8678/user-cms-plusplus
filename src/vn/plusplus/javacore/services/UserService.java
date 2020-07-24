@@ -53,13 +53,12 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public void sendTokenResetToEmail(String email) {
-
+    public String sendTokenResetToEmail(String email) {
+        return null;
     }
-
     @Override
-    public void saveTokenResetToDB(String token, String email, String username) {
-
+    public boolean verifyToken(String token) {
+        return false;
     }
 
     @Override
