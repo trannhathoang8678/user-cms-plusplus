@@ -11,6 +11,7 @@ public class User {
     private String gender;
     private int age;
     Scanner sc = new Scanner(System.in);
+
     //initialization
     public User(String username, String password, String fullname, String gender, int age, String address, String email) {
         this.username = username;
@@ -36,11 +37,12 @@ public class User {
         email = sc.next();
         System.out.print("Address: ");
         address = sc.next();
-        System.out.print("Gender: ");
+        System.out.print("Gender ( M or F) : ");
         gender = sc.next();
         System.out.print("Age: ");
         age = sc.nextInt();
     }
+
     //getters,setters
     public String getUsername() {
         return username;

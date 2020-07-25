@@ -56,6 +56,7 @@ public class UserService implements UserInterface {
     public String sendTokenResetToEmail(String email) {
         return null;
     }
+
     @Override
     public boolean verifyToken(String token, String userToken) {
         return false;
@@ -82,8 +83,8 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public void verifyNewPass(String newPass, String oldPass) {
-
+    public boolean verifyNewPass(String newPass, String oldPass) {
+        return false;
     }
 
     @Override
@@ -92,12 +93,12 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public boolean verifyUpdateInfo(String email, String phone, String address) {
+    public boolean verifyUpdateInfo(String email, int age, String address) {
         return false;
     }
 
     @Override
-    public void updateUserInfo(User user, String email, String phone, String address) {
+    public void updateUserInfo(User user, String email, int age, String address) {
 
     }
 }
