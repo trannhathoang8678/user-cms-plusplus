@@ -3,6 +3,8 @@ package vn.plusplus.javacore.services;
 import vn.plusplus.javacore.interfaces.UserInterface;
 import vn.plusplus.javacore.models.User;
 
+import javax.jws.soap.SOAPBinding;
+import java.io.*;
 import java.util.List;
 
 public class UserService implements UserInterface {
@@ -13,6 +15,22 @@ public class UserService implements UserInterface {
 
     @Override
     public void writeAllUserToDB(List<User> users) {
+       // users.add(new User("username","password","fullname","gender",18,"address","email"));
+        String file = new File("data/user.txt").getAbsolutePath();
+        try(FileWriter fileWriter = new FileWriter(file,false);
+            PrintWriter printWriter = new PrintWriter(fileWriter))
+        {
+
+                for(User user :users)
+                    printWriter.append(user.getUsername() + '#' + user.getPassword() + '#'
+                    + user.getFullname() + '#' + user.getGender() + '#' +user.getAge() + '#'
+                    + user.getAddress() + '#' +user.getEmail() + '\n');
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
