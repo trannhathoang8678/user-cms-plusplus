@@ -2,15 +2,30 @@ package vn.plusplus.javacore.services;
 
 import vn.plusplus.javacore.interfaces.UserInterface;
 import vn.plusplus.javacore.models.User;
-
-import javax.jws.soap.SOAPBinding;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService implements UserInterface {
     @Override
     public List<User> readAllUserFromDB() {
-        return null;
+        List<User> users = new ArrayList<>();
+        User user;
+        String file = new File("data/user.txt").getAbsolutePath();
+        String line ;
+        try (FileReader fileReader = new FileReader(file);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            while( (line = bufferedReader.readLine()) != null)
+            {
+                String[] s = line.split("#");
+                user = new User(s[0],s[1],s[2],s[3],Integer.parseInt(s[4]),s[5],s[6]);
+                users.add(user);
+            }
+        } catch (IOException e) {
+            System.out.println("Doc file bi loi");
+            e.printStackTrace();
+        }
+        return users;
     }
 
     @Override
