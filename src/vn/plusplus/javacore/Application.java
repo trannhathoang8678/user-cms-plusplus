@@ -9,7 +9,6 @@ public class Application {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         UserService userService = new UserService();
-        userService.readAllUserFromDB();
         while (true) {
             System.out.println("0.Exit");
             System.out.println("1.Register");
