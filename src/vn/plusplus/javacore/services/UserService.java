@@ -94,7 +94,17 @@ public class UserService implements UserInterface {
 
     @Override
     public void displayUsers(List<User> users) {
-
+        int cnt = 0;
+        for(User user : users)
+        {
+            System.out.println("User " + ++cnt);
+            System.out.println("Username: " + user.getUsername());
+            System.out.println("Password: " + user.getPassword());
+            System.out.println("Gender: " + user.getGender());
+            System.out.println("Age: " + user.getAge());
+            System.out.println("Address: " + user.getAddress());
+            System.out.println("Email: " + user.getEmail());
+        }
     }
 
     @Override
