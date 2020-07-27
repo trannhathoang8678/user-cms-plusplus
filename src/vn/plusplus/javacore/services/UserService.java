@@ -4,7 +4,6 @@ import vn.plusplus.javacore.interfaces.UserInterface;
 import vn.plusplus.javacore.models.User;
 
 import java.util.List;
-
 public class UserService implements UserInterface {
     @Override
     public List<User> readAllUserFromDB() {
@@ -16,8 +15,16 @@ public class UserService implements UserInterface {
 
     }
 
-    @Override
+    @Override // Quang
     public boolean verifyData(User user) {
+        if(verifyEmail(user.getEmail()) && user.getPassword().matches(".{6,}") &&
+                user.getFullname() != null &&
+                user.getAddress() != null &&
+                user.getAge() != 0 &&
+                user.getGender() != null &&
+                user.getUsername() != null){
+            return true;
+        }
         return false;
     }
 
@@ -27,12 +34,11 @@ public class UserService implements UserInterface {
         return null;
     }
 
-    @Override
+    @Override //Quang
     public void saveAccountToDB(User user) {
         List<User> users = readAllUserFromDB();
         // Do your code
-
-
+        users.add(user);
         // End your code
         writeAllUserToDB(users);
     }
@@ -47,8 +53,15 @@ public class UserService implements UserInterface {
         return false;
     }
 
-    @Override
+    @Override // Quang
     public User findUserByEmail(String email) {
+        List<User> users = readAllUserFromDB();
+
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getEmail().equals(email)) {
+                return users.get(i);
+            }
+        }
         return null;
     }
 
