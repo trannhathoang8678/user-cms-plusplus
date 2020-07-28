@@ -22,8 +22,8 @@ public interface UserInterface {
     //3. Reset password
     boolean verifyEmail(String email);
     User findUserByEmail(String email);
-    void sendTokenResetToEmail(String email);
-    void saveTokenResetToDB(String token, String email, String username);
+    String sendTokenResetToEmail(String email);
+    boolean verifyToken(String token, String userToken);
 
     //4. Display user list
     void displayUsers(List<User> users);
@@ -38,12 +38,12 @@ public interface UserInterface {
 
     //7. Change password
     // User findUserByUsernameAndPassword(String username, String password); => Yeu cau nhap dung username va mat khau cu
-    void verifyNewPass(String newPass, String oldPass);
+    boolean verifyNewPass(String newPass, String oldPass);
     void updateUserPass(User user, String newPass);
 
     //8. Update user information
     // Call login feature first
-    boolean verifyUpdateInfo(String email, String phone, String address);
-    void updateUserInfo(User user, String email, String phone, String address);
+    boolean verifyUpdateInfo(String email, int age, String address);
+    void updateUserInfo(User user, String email, int age, String address);
 
 }
