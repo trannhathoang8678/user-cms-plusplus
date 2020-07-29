@@ -47,12 +47,12 @@ public class UserService implements UserInterface {
 
     @Override // Quang
     public boolean verifyData(User user) {
-        if(verifyEmail(user.getEmail()) && user.getPassword().matches(".{6,}") &&
-                user.getFullname() != null &&
+        if(user.getFullname() != null && user.getAge() != 0 &&
+                user.getGender().matches("[MF]") &&
                 user.getAddress() != null &&
-                user.getAge() != 0 &&
-                user.getGender() != null &&
-                user.getUsername() != null){
+                user.getUsername() != null &&
+                user.getPassword().matches(".{6,}") &&
+                user.getEmail().endsWith("@gmail.com")){
             return true;
         }
         return false;
@@ -86,7 +86,6 @@ public class UserService implements UserInterface {
     @Override // Quang
     public User findUserByEmail(String email) {
         List<User> users = readAllUserFromDB();
-
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getEmail().equals(email)) {
                 return users.get(i);
