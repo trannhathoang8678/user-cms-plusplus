@@ -167,7 +167,18 @@ public class UserService implements UserInterface {
 
     @Override
     public List<User> findUserByRangeAge(Integer fromAge, Integer toAge) {
-        return null;
+        List<User> users = readAllUserFromDB();
+        List<User> usersInRangeAge = new ArrayList<>();
+        boolean checkUsersInRangeAgeExist = false;
+        for (User user : users)
+            if (user.getAge() >= fromAge && user.getAge() <= toAge) {
+                usersInRangeAge.add(user);
+                checkUsersInRangeAgeExist = true;
+            }
+        if (checkUsersInRangeAgeExist)
+            return usersInRangeAge;
+        else
+            return null;
     }
 
     @Override
