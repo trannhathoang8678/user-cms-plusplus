@@ -2,10 +2,12 @@ package vn.plusplus.javacore.services;
 
 import vn.plusplus.javacore.interfaces.UserInterface;
 import vn.plusplus.javacore.models.User;
+
 import java.io.*;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+
 public class UserService implements UserInterface {
 
     private SendEmailService emailService;
@@ -17,8 +19,8 @@ public class UserService implements UserInterface {
     private static SecureRandom random = new SecureRandom();
 
 
-    private SendEmailService getEmailService(){
-        if(emailService == null){
+    private SendEmailService getEmailService() {
+        if (emailService == null) {
             emailService = new SendEmailService();
         }
         return emailService;
@@ -29,13 +31,12 @@ public class UserService implements UserInterface {
         List<User> users = new ArrayList<>();
         User user;
         String file = new File("data/user.txt").getAbsolutePath();
-        String line ;
+        String line;
         try (FileReader fileReader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            while( (line = bufferedReader.readLine()) != null)
-            {
+            while ((line = bufferedReader.readLine()) != null) {
                 String[] s = line.split("#");
-                user = new User(s[0],s[1],s[2],s[3],Integer.parseInt(s[4]),s[5],s[6]);
+                user = new User(s[0], s[1], s[2], s[3], Integer.parseInt(s[4]), s[5], s[6]);
                 users.add(user);
             }
         } catch (IOException e) {
@@ -65,12 +66,12 @@ public class UserService implements UserInterface {
 
     @Override // Quang
     public boolean verifyData(User user) {
-        if(user.getFullname() != null && user.getAge() != 0 &&
+        if (user.getFullname() != null && user.getAge() != 0 &&
                 user.getGender().matches("[MF]") &&
                 user.getAddress() != null &&
                 user.getUsername() != null &&
                 user.getPassword().matches(".{6,}") &&
-                user.getEmail().endsWith("@gmail.com")){
+                user.getEmail().endsWith("@gmail.com")) {
             return true;
         }
         return false;
@@ -98,7 +99,10 @@ public class UserService implements UserInterface {
 
     @Override
     public boolean verifyEmail(String email) {
-        return false;
+        if (email.endsWith("@gmail.com"))
+            return true;
+        else
+            return false;
     }
 
     @Override // Quang
@@ -119,7 +123,7 @@ public class UserService implements UserInterface {
         emailService = getEmailService();
         try {
             emailService.sendEmail("Reset password email", email, content);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Send email reset pass failed");
         }
         return token;
@@ -150,8 +154,7 @@ public class UserService implements UserInterface {
     @Override
     public void displayUsers(List<User> users) {
         int cnt = 0;
-        for(User user : users)
-        {
+        for (User user : users) {
             System.out.println("User " + ++cnt);
             System.out.println("Username: " + user.getUsername());
             System.out.println("Password: " + user.getPassword());

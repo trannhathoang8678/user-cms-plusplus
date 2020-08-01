@@ -44,7 +44,7 @@ public class Application {
                     }
                     break;
                 case 3:
-                    System.out.print("Write you email: ");
+                    System.out.print("Write your email: ");
                     email = sc.next();
                     user = null;
                     if (userService.verifyEmail(email) && ((user = userService.findUserByEmail(email)) != null)) {
