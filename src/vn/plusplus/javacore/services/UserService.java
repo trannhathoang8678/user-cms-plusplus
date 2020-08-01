@@ -183,7 +183,18 @@ public class UserService implements UserInterface {
 
     @Override
     public List<User> findUserByGender(String gender) {
-        return null;
+        List<User> users = readAllUserFromDB();
+        List<User> usersByGender = new ArrayList<>();
+        boolean checkUsersByGenderExist = false;
+        for (User user : users)
+            if (user.getGender().equals(gender)) {
+                usersByGender.add(user);
+                checkUsersByGenderExist = true;
+            }
+        if (checkUsersByGenderExist)
+            return usersByGender;
+        else
+            return null;
     }
 
     @Override
