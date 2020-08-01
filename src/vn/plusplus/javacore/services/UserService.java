@@ -204,7 +204,10 @@ public class UserService implements UserInterface {
 
     @Override
     public boolean verifyNewPass(String newPass, String oldPass) {
-        return false;
+        if(newPass.matches("[^ ]{6,}") && !newPass.equals(oldPass))
+            return true;
+        else
+            return false;
     }
 
     @Override
