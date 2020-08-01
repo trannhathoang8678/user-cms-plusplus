@@ -3,9 +3,27 @@ package vn.plusplus.javacore.services;
 import vn.plusplus.javacore.interfaces.UserInterface;
 import vn.plusplus.javacore.models.User;
 import java.io.*;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 public class UserService implements UserInterface {
+
+    private SendEmailService emailService;
+
+    private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+    private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
+
+    private static final String DATA_FOR_RANDOM_STRING = CHAR_UPPER;
+    private static SecureRandom random = new SecureRandom();
+
+
+    private SendEmailService getEmailService(){
+        if(emailService == null){
+            emailService = new SendEmailService();
+        }
+        return emailService;
+    }
+
     @Override
     public List<User> readAllUserFromDB() {
         List<User> users = new ArrayList<>();
@@ -96,7 +114,32 @@ public class UserService implements UserInterface {
 
     @Override
     public String sendTokenResetToEmail(String email) {
-        return null;
+        String token = generateRandomString(6);
+        String content = "Token to reset password for you: " + token;
+        emailService = getEmailService();
+        try {
+            emailService.sendEmail("Reset password email", email, content);
+        } catch (Exception e){
+            System.out.println("Send email reset pass failed");
+        }
+        return token;
+    }
+
+    public static String generateRandomString(int length) {
+        if (length < 1) throw new IllegalArgumentException();
+
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+
+            // 0-62 (exclusive), random returns 0-61
+            int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
+            char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
+            sb.append(rndChar);
+
+        }
+
+        return sb.toString();
+
     }
 
     @Override
