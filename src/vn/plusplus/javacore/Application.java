@@ -35,7 +35,9 @@ public class            Application {
                     }
                     break;
                 case 2:
+                    System.out.println("Write your username");
                     username = sc.next();
+                    System.out.println("Write your password");
                     password = sc.next();
                     if (userService.findUserByUsernameAndPassword(username, password) != null) {
                         System.out.println("Login success");
@@ -103,7 +105,9 @@ public class            Application {
                     }
                     break;
                 case 9:
+                    System.out.println("Write your username");
                     username = sc.next();
+                    System.out.println("Write your password");
                     password = sc.next();
                     if ((user = userService.findUserByUsernameAndPassword(username, password)) != null) {
                         System.out.println("Login success");
