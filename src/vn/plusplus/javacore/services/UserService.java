@@ -225,6 +225,17 @@ public class UserService implements UserInterface {
 
     @Override
     public void updateUserInfo(User user, String email, int age, String address) {
+        List<User> allUsers = readAllUserFromDB();
 
+        for(User u : allUsers){
+            if(u.getUsername().equals(user.getUsername())){
+                u.setEmail(email);
+                u.setAge(age);
+                u.setAddress(address);
+                break;
+            }
+        }
+
+        writeAllUserToDB(allUsers);
     }
 }
