@@ -238,7 +238,14 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public void updateUserPass(User user, String newPass) {
+    public void updateUserPass(User userNeedToUpdatePass, String newPass) {
+        List<User> users = readAllUserFromDB();
+        for(User user : users)
+            if(user.getUsername().equals(userNeedToUpdatePass.getUsername()))
+            {
+                user.setPassword(newPass);
+            }
+        writeAllUserToDB(users);
     }
 
     @Override
