@@ -148,6 +148,9 @@ public class UserService implements UserInterface {
 
     @Override
     public boolean verifyToken(String token, String userToken) {
+        if(token.equals(userToken)){
+            return true;
+        }
         return false;
     }
 
