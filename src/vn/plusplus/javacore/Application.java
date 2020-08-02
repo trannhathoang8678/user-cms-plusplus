@@ -19,7 +19,7 @@ public class Application {
             System.out.println("7.Delete user");
             System.out.println("8.Change password");
             System.out.println("9.Update information");
-            System.out.println("Write a corresponding number (from 0 to 8) to method you choose: ");
+            System.out.println("Write a corresponding number (from 0 to 9) to method you choose: ");
             int choice = sc.nextInt();
             User user;
             String username, password, email, phone, address;
