@@ -4,7 +4,7 @@ import vn.plusplus.javacore.models.User;
 import vn.plusplus.javacore.services.UserService;
 import java.util.Scanner;
 
-public class Application {
+public class            Application {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         UserService userService = new UserService();

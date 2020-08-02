@@ -7,6 +7,7 @@ import java.io.*;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserService implements UserInterface {
 
@@ -80,8 +81,8 @@ public class UserService implements UserInterface {
     @Override
     public User findUserByUsername(String username) {
         List<User> users = readAllUserFromDB();
-        for (User a: users) {
-            if (a.getUsername().equals(username)){
+        for (User a : users) {
+            if (a.getUsername().equals(username)) {
                 return a;
             }
         }
@@ -100,8 +101,8 @@ public class UserService implements UserInterface {
     @Override
     public User findUserByUsernameAndPassword(String username, String password) {
         List<User> users = readAllUserFromDB();
-        for (User a: users) {
-            if (a.getUsername().equals(username) && a.getPassword().equals(password)){
+        for (User a : users) {
+            if (a.getUsername().equals(username) && a.getPassword().equals(password)) {
                 return a;
             }
         }
@@ -159,7 +160,7 @@ public class UserService implements UserInterface {
 
     @Override
     public boolean verifyToken(String token, String userToken) {
-        if(token.equals(userToken)){
+        if (token.equals(userToken)) {
             return true;
         }
         return false;
@@ -213,12 +214,11 @@ public class UserService implements UserInterface {
 
     @Override
     public void removeUserToDB(User user) {
-
     }
 
     @Override
     public boolean verifyNewPass(String newPass, String oldPass) {
-        if(newPass.matches("[^ ]{6,}") && !newPass.equals(oldPass))
+        if (newPass.matches("[^ ]{6,}") && !newPass.equals(oldPass))
             return true;
         else
             return false;
@@ -226,11 +226,21 @@ public class UserService implements UserInterface {
 
     @Override
     public void updateUserPass(User user, String newPass) {
-
     }
 
     @Override
     public boolean verifyUpdateInfo(String email, int age, String address) {
+        {
+            if (email.endsWith("@gmail.com")) {
+                return true;
+            }
+            if (age > 0 && age < 120) {
+                return true;
+            }
+            if (address != null && address != "") {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -238,8 +248,8 @@ public class UserService implements UserInterface {
     public void updateUserInfo(User user, String email, int age, String address) {
         List<User> allUsers = readAllUserFromDB();
 
-        for(User u : allUsers){
-            if(u.getUsername().equals(user.getUsername())){
+        for (User u : allUsers) {
+            if (u.getUsername().equals(user.getUsername())) {
                 u.setEmail(email);
                 u.setAge(age);
                 u.setAddress(address);
