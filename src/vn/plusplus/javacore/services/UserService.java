@@ -80,6 +80,11 @@ public class UserService implements UserInterface {
     @Override
     public User findUserByUsername(String username) {
         List<User> users = readAllUserFromDB();
+        for (User a: users) {
+            if (a.getUsername().equals(username)){
+                return a;
+            }
+        }
         return null;
     }
 
