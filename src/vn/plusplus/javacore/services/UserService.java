@@ -213,7 +213,20 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public void removeUserToDB(User user) {
+    public void removeUserToDB(User userNeedToRemove) {
+        if(userNeedToRemove == null)
+        {
+            System.out.println("There is no user in DB have the same username");
+            return;
+        }
+        List<User> users = readAllUserFromDB();
+        List<User> usersListHaveDeletedUser = new ArrayList<>();;
+        for( User user : users)
+            if(!user.getUsername().equals(userNeedToRemove.getUsername()))
+            {
+                usersListHaveDeletedUser.add(user);
+            }
+        writeAllUserToDB(usersListHaveDeletedUser);
     }
 
     @Override
