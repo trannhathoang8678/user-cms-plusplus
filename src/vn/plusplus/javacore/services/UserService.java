@@ -227,6 +227,7 @@ public class UserService implements UserInterface {
                 usersListHaveDeletedUser.add(user);
             }
         writeAllUserToDB(usersListHaveDeletedUser);
+            System.out.println("Delete success");
     }
 
     @Override

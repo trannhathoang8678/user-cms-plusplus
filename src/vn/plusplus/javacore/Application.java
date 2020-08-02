@@ -22,7 +22,7 @@ public class            Application {
             System.out.println("Write a corresponding number (from 0 to 9) to method you choose: ");
             int choice = sc.nextInt();
             User user;
-            String username, password, email, phone, address;
+            String username, password, email, address;
             int age;
             switch (choice) {
                 case 1:
@@ -82,7 +82,7 @@ public class            Application {
                     userService.displayUsers(userService.findUserByGender(gender));
                     break;
                 case 7:
-                    System.out.print("Write username you want to remove");
+                    System.out.println("Write username you want to remove");
                     username = sc.next();
                     userService.removeUserToDB(userService.findUserByUsername(username));
                     break;
