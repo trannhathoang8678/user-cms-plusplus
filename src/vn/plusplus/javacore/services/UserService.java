@@ -99,6 +99,12 @@ public class UserService implements UserInterface {
 
     @Override
     public User findUserByUsernameAndPassword(String username, String password) {
+        List<User> users = readAllUserFromDB();
+        for (User a: users) {
+            if (a.getUsername().equals(username) && a.getPassword().equals(password)){
+                return a;
+            }
+        }
         return null;
     }
 
