@@ -19,5 +19,5 @@
 - Tải thư viện javax mail tại https://repo1.maven.org/maven2/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar
 - Import thư viện vào project
 - Run class Application:
-    - Ghi số từ 1 đến 8 cho các chức năng tương ứng 
+    - Ghi số từ 1 đến 9 cho các chức năng tương ứng 
     - Ghi 0 để kết thúc chương trình
