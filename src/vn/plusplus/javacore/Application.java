@@ -110,15 +110,21 @@ public class            Application {
                     System.out.println("Write your password");
                     password = sc.next();
                     if ((user = userService.findUserByUsernameAndPassword(username, password)) != null) {
+
                         System.out.println("Login success");
-                        System.out.print("Email: ");
-                        email = sc.next();
-                        System.out.print("Address: ");
-                        address = sc.next();
-                        System.out.print("Age: ");
-                        age = sc.nextInt();
-                        userService.verifyUpdateInfo(email, age, address);
+                        do {
+                            System.out.println("Write your gmail and age must be under 120");
+                            System.out.print("Email: ");
+                            email = sc.next();
+                            System.out.print("Address: ");
+                            address = sc.next();
+                            System.out.print("Age: ");
+                            age = sc.nextInt();
+                        }
+                        while(!userService.verifyUpdateInfo(email, age, address));
                         userService.updateUserInfo(user, email, age, address);
+
+
                     } else {
                         System.out.println("Login fail");
                     }

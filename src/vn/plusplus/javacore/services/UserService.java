@@ -7,7 +7,6 @@ import java.io.*;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class UserService implements UserInterface {
 
@@ -214,20 +213,19 @@ public class UserService implements UserInterface {
 
     @Override
     public void removeUserToDB(User userNeedToRemove) {
-        if(userNeedToRemove == null)
-        {
+        if (userNeedToRemove == null) {
             System.out.println("There is no user in DB have the same username");
             return;
         }
         List<User> users = readAllUserFromDB();
-        List<User> usersListHaveDeletedUser = new ArrayList<>();;
-        for( User user : users)
-            if(!user.getUsername().equals(userNeedToRemove.getUsername()))
-            {
+        List<User> usersListHaveDeletedUser = new ArrayList<>();
+        ;
+        for (User user : users)
+            if (!user.getUsername().equals(userNeedToRemove.getUsername())) {
                 usersListHaveDeletedUser.add(user);
             }
         writeAllUserToDB(usersListHaveDeletedUser);
-            System.out.println("Delete success");
+        System.out.println("Delete success");
     }
 
     @Override
@@ -241,9 +239,8 @@ public class UserService implements UserInterface {
     @Override
     public void updateUserPass(User userNeedToUpdatePass, String newPass) {
         List<User> users = readAllUserFromDB();
-        for(User user : users)
-            if(user.getUsername().equals(userNeedToUpdatePass.getUsername()))
-            {
+        for (User user : users)
+            if (user.getUsername().equals(userNeedToUpdatePass.getUsername())) {
                 user.setPassword(newPass);
             }
         writeAllUserToDB(users);
@@ -251,18 +248,17 @@ public class UserService implements UserInterface {
 
     @Override
     public boolean verifyUpdateInfo(String email, int age, String address) {
-        {
-            if (email.endsWith("@gmail.com")) {
-                return true;
-            }
-            if (age > 0 && age < 120) {
-                return true;
-            }
-            if (address != null && address != "") {
-                return true;
-            }
+        if (!email.endsWith("@gmail.com")) {
+            return false;
         }
-        return false;
+        if (!(age > 0 && age < 120)) {
+            return false;
+        }
+        if (!(address != null && address != "")) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
