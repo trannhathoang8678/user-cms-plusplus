@@ -89,7 +89,9 @@ public class            Application {
                     userService.removeUserToDB(userService.findUserByUsername(username));
                     break;
                 case 8:
+                    System.out.print("Username: ");
                     username = sc.next();
+                    System.out.print("Password: ");
                     password = sc.next();
                     if ((user = userService.findUserByUsernameAndPassword(username, password)) != null) {
                         System.out.println("Login success");
